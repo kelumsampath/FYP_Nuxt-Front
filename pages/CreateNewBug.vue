@@ -54,14 +54,14 @@
           </div>
         </div>
         <div>
-          <label for="phone" class="sr-only">Phone</label>
+          <label for="selectedDevs" class="sr-only">Developers</label>
           <div class="relative rounded-md shadow-sm">
             <input
-              v-model="phone"
-              name="phone"
-              id="phone"
+              v-model="selectedDevs"
+              name="selectedDevs"
+              id="selectedDevs"
               class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
-              placeholder="Phone"
+              placeholder="Developer"
             />
           </div>
         </div>
@@ -89,6 +89,7 @@ export default {
       errored: false,
       summary: "",
       developers: [],
+      selectedDevs:"",
       description: "",
     };
   },
@@ -111,7 +112,7 @@ export default {
       this.$axios
         .$post("/bug", {
           summary: this.summary,
-          developers: [2, 3],
+          developers: this.selectedDevs.split(",").map(Number),
           description: this.description,
         })
         .then((response) => {
