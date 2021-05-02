@@ -53,19 +53,6 @@
               ></textarea>
             </div>
           </div>
-
-          <label for="email" class="sr-only">Email*</label>
-          <div class="relative rounded-md shadow-sm">
-            <input
-              required
-              v-model="email"
-              name="email"
-              id="email"
-              type="email"
-              class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
-              placeholder="Email*"
-            />
-          </div>
         </div>
         <div>
           <label for="phone" class="sr-only">Phone</label>
@@ -114,13 +101,11 @@ export default {
           'Content-Type': 'application/json;'
       }
     };
-      alert("Sss");
       this.loading = true;
       this.$axios
         .$post("/bug", {
           summary: this.summary,
-          email: this.email,
-          phone: this.phone,
+          developers:[2,3],
           description: this.description,
         })
         .then((response) => {
