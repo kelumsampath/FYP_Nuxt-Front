@@ -103,14 +103,14 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          title: 'Create New Bug',
+          to: '/createnewbug'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Estimating story point for bugs using bug reports'
     }
   }
 }
