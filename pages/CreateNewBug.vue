@@ -14,8 +14,7 @@
       "
     >
       <div v-if="success" class="rounded bg-indigo-500 text-white text-lg p-4">
-        Great! Your message has been sent successfully. I will try to respond
-        quickly.
+        Bug successfully created!
       </div>
       <form
         v-else
@@ -23,7 +22,7 @@
         class="grid grid-cols-1 gap-y-6"
       >
         <div v-if="errored" class="rounded bg-red-200 text-lg p-4">
-          Bummer, Something went wrong. Did you fill out all of the fields?
+          Something went wrong!
         </div>
         <div>
           <label for="summar_txt" class="sr-only">Summary*</label>
@@ -73,7 +72,7 @@
               type="submit"
               class="inline-flex justify-center py-3 px-6 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
             >
-              {{ loading ? "Sending Message..." : "Submit" }}
+              {{ loading ? "Creating..." : "Create" }}
             </button>
           </span>
         </div>
@@ -89,23 +88,30 @@ export default {
       success: false,
       errored: false,
       summary: "",
-      email: "",
-      phone: "",
+      developers: [],
       description: "",
     };
   },
+   fetch(){
+    this.$axios.$get("/developers")
+        .then((response) => {
+          console.log(response)
+          developers=response
+        })
+        .catch((error) => {
+          
+        })
+        .finally(() => {
+          
+        });
+  },
   methods: {
     sendBugReport() {
-       let axiosConfig = {
-      headers: {
-          'Content-Type': 'application/json;'
-      }
-    };
       this.loading = true;
       this.$axios
         .$post("/bug", {
           summary: this.summary,
-          developers:[2,3],
+          developers: [2, 3],
           description: this.description,
         })
         .then((response) => {
