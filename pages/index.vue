@@ -81,6 +81,24 @@ import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
+  data() {
+    return {
+      bug:[]
+    };
+  },
+  fetch(){
+    this.$axios.$get("/bug")
+        .then((response) => {
+          console.log(response)
+          bug=response
+        })
+        .catch((error) => {
+          
+        })
+        .finally(() => {
+          
+        });
+  },
   components: {
     Logo,
     VuetifyLogo
