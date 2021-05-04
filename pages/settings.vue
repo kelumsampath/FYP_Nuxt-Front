@@ -51,6 +51,11 @@
           </v-row>
         </v-container>
       </div>
+
+    <div>
+        
+    </div>
+    
     </div>
   </v-row>
 </template>
@@ -60,22 +65,20 @@ export default {
   data() {
     return {
       file: "",
-      AccuracyMeassures1:{},
-      AccuracyMeassures2:{}
+      AccuracyMeassures1: {},
+      AccuracyMeassures2: {},
     };
   },
-  fetch(){
-    this.$axios.$get("/accuracy")
-        .then((response) => {
-          this.AccuracyMeassures1=response.AccuracyMeassures1
-          this.AccuracyMeassures2=response.AccuracyMeassures2
-        })
-        .catch((error) => {
-          
-        })
-        .finally(() => {
-          
-        });
+  
+  fetch() {
+    this.$axios
+      .$get("/accuracy")
+      .then((response) => {
+        this.AccuracyMeassures1 = response.AccuracyMeassures1;
+        this.AccuracyMeassures2 = response.AccuracyMeassures2;
+      })
+      .catch((error) => {})
+      .finally(() => {});
   },
 
   methods: {
@@ -89,17 +92,16 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data)
-          this.AccuracyMeassures1=response.data.AccuracyMeassures1
-          this.AccuracyMeassures2=response.data.AccuracyMeassures2
-          console.log( this.AccuracyMeassures1["Mean Absolute Error"])
+          console.log(response.data);
+          this.AccuracyMeassures1 = response.data.AccuracyMeassures1;
+          this.AccuracyMeassures2 = response.data.AccuracyMeassures2;
+          console.log(this.AccuracyMeassures1["Mean Absolute Error"]);
         })
         .catch(function () {
           console.log("FAILURE!!");
         });
     },
 
-    
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
     },
