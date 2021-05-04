@@ -55,7 +55,7 @@ export default {
   methods: {
     openBug(value){
       console.log(value.Id)
-      // alert("sss")
+      this.$router.push({ path: `/bug/${value.Id}` })
     }
 
   }
