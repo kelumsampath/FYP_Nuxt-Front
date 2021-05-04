@@ -64,25 +64,24 @@ export default {
       AccuracyMeassures2:{}
     };
   },
+  fetch(){
+    this.$axios.$get("/accuracy")
+        .then((response) => {
+          this.AccuracyMeassures1=response.AccuracyMeassures1
+          this.AccuracyMeassures2=response.AccuracyMeassures2
+        })
+        .catch((error) => {
+          
+        })
+        .finally(() => {
+          
+        });
+  },
 
   methods: {
-    /*
-        Submits the file to the server
-      */
     submitFile() {
-      /*
-                Initialize the form data
-            */
       let formData = new FormData();
-
-      /*
-                Add the form data we need to submit
-            */
       formData.append("file", this.file);
-
-      /*
-          Make the request to the POST /single-file URL
-        */
       this.$axios
         .post("/trainmodel", formData, {
           headers: {
@@ -100,9 +99,7 @@ export default {
         });
     },
 
-    /*
-        Handles a change on the file upload
-      */
+    
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
     },
