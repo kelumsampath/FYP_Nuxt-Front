@@ -5,6 +5,7 @@
         margin: 0% 10%;
         border: 3px solid white;
         padding: 2% 10%;
+        min-width: 80%;
         background-color: #845460;
       ">
    <v-data-table dense :headers="headers" :items="bugs" class="elevation-1" @click:row="openBug">

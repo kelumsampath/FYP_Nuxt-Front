@@ -105,6 +105,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Create New Bug',
           to: '/createnewbug'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Settings',
+          to: '/settings'
         }
       ],
       miniVariant: false,
