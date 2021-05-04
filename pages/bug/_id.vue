@@ -14,9 +14,12 @@
         <p>Bug Id: {{ bug[0].Id }}</p>
         <h1>{{ bug[0].Summary }}</h1>
         <h3>{{ bug[0].Description }}</h3>
-        <h3>Story point :{{ bug[0].StroyPoint }}</h3>
+        <h3>Story point :{{ bug[0].StroyPoint}}</h3>
         <h3>Predicted Story Point: {{ bug[0].PredictedStoryPoint }}</h3>
-        
+        <h3>Developers: </h3>
+        <h4 v-for="dev in bug[0].Name" :key="dev" style="margin-left:10%;">{{dev}}</h4>
+        <h3>Comments Story Point: </h3>
+        <h4 v-for="cmnt in bug[0].Comment" :key="cmnt" style="margin-left:10%;">{{cmnt}}</h4>
       </div>
     </div>
   </v-row>
@@ -38,8 +41,6 @@ export default {
       .then((response) => {
         console.log(response.bugreport);
         this.bug = response.bugreport;
-        
-        
       })
       .catch((error) => {})
       .finally(() => {});
