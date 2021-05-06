@@ -15,11 +15,17 @@
         <h1>{{ bug[0].Summary }}</h1>
         <h3>{{ bug[0].Description }}</h3>
         <h3>Story point :{{ bug[0].StroyPoint}}</h3>
-        <h3>Predicted Story Point: {{ bug[0].PredictedStoryPoint }}</h3>
+        <h3>Predicted Story Point: {{ bug[0].PredictedStoryPoint }}</h3> 
         <h3>Developers: </h3>
         <h4 v-for="dev in bug[0].Name" :key="dev" style="margin-left:10%;">{{dev}}</h4>
         <h3>Comments Story Point: </h3>
         <h4 v-for="cmnt in bug[0].Comment" :key="cmnt" style="margin-left:10%;">{{cmnt}}</h4>
+        <button
+              v-on:click="gensp()"
+              style="background: green; padding: 1%; border-radius: 8px"
+            >
+              Genarate Story Point
+            </button>
       </div>
     </div>
   </v-row>
@@ -45,5 +51,20 @@ export default {
       .catch((error) => {})
       .finally(() => {});
   },
+  methods:{
+    gensp(){
+      this.$axios
+        .$post("/storypointgen", {
+          bug:this.bug[0]
+        })
+        .then((response) => {
+          this.$fetch()
+        })
+        .catch((error) => {
+        })
+        .finally(() => {
+        });
+    }
+  }
 };
 </script>
