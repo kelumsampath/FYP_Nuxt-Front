@@ -34,6 +34,7 @@
               id="summar_txt"
               class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
               placeholder="Summary*"
+              style="width:40%;margin-left: 10%; background-color:white;"
             />
           </div>
         </div>
@@ -49,6 +50,7 @@
                 rows="4"
                 class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
                 placeholder="Description*"
+                style="width:40%;margin-left: 10%; background-color:white;"
               ></textarea>
             </div>
           </div>
@@ -61,19 +63,29 @@
               name="selectedDevs"
               id="selectedDevs"
               class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
-              placeholder="Developer"
+              placeholder="Developer*"
+              style="width:40%;margin-left: 10%; background-color:white;"
             />
           </div>
         </div>
 
         <div class="">
-          <span class="inline-flex rounded-md shadow-sm">
+          <span class="inline-flex rounded-md shadow-sm" style="margin-left:40%; ">
+            <button
+               @click="()=>{this.summary='';this.description='';this.selectedDevs=[]}"
+               style="background: #a7bbc7; padding: 3%; border-radius: 8px;margin-top:5%"
+              class="inline-flex justify-center py-3 px-6 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
+            >
+              Clear
+            </button>
             <button
               type="submit"
+               style="background: #a7bbc7; padding: 3%; border-radius: 8px; "
               class="inline-flex justify-center py-3 px-6 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
             >
               {{ loading ? "Creating..." : "Create" }}
             </button>
+            
           </span>
         </div>
       </form>
