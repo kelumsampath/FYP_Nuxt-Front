@@ -82,8 +82,18 @@
           >
             {{ genarating ? "Genarating..." : "Genarate" }}
           </button>
+          
         </v-col>
+        <button
+            v-on:click="deletebug()"
+            style="background: red; border-radius: 8px;padding:1%;margin-left:90%"
+          >
+            <v-icon light v-on:click="deleteComment(cmnt)" style="color:white;">
+              mdi-delete
+            </v-icon>
+          </button>
       </v-row>
+      
     </v-container>
   </div>
 </template>
@@ -157,6 +167,17 @@ export default {
         .then((response) => {
 
           this.$fetch();
+        })
+        .catch((error) => {})
+        .finally(() => {});
+    },
+    deletebug() {
+      this.$axios
+        .$post("/deletebug", {
+          bugId:this.bug[0].Id,
+        })
+        .then((response) => {
+          this.$router.push({ path: `/` })
         })
         .catch((error) => {})
         .finally(() => {});

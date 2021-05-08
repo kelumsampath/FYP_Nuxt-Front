@@ -97,17 +97,17 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-home',
           title: 'Home',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-credit-card-plus',
           title: 'Create New Bug',
           to: '/createnewbug'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-wrench',
           title: 'Settings',
           to: '/settings'
         }
