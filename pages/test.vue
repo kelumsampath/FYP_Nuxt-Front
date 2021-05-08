@@ -7,7 +7,6 @@
       :label="dev[1]"
       :value="dev[0]"
     ></v-checkbox>
-    
   </v-container>
 </template>
 
