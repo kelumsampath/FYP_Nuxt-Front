@@ -27,7 +27,7 @@
               v-on:click="submitFile()"
               style="background: green; padding: 1%; border-radius: 8px"
             >
-              Train
+              {{ Training ? "Training..." : "Train" }}
             </button>
           </div>
         </div>
@@ -66,6 +66,7 @@ export default {
   data() {
     return {
       file: "",
+      Training:false,
       AccuracyMeassures1: {},
       AccuracyMeassures2: {},
       label:['JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
@@ -89,6 +90,7 @@ export default {
   methods: {
    
     submitFile() {
+      this.Training=true
       let formData = new FormData();
       formData.append("file", this.file);
       this.$axios
@@ -105,7 +107,8 @@ export default {
         })
         .catch(function () {
           console.log("FAILURE!!");
-        });
+        })
+        .finally(() => {this.Training=false});
     },
 
     handleFileUpload() {
