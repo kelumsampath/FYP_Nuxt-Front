@@ -80,7 +80,7 @@
             v-on:click="gensp()"
             style="background: #a7bbc7; padding: 3%; border-radius: 8px"
           >
-            Genarate Story Point
+            {{ genarating ? "Genarating..." : "Genarate" }}
           </button>
         </v-col>
       </v-row>
@@ -97,6 +97,7 @@ export default {
       Comments: [],
       developers: [],
       loading: false,
+      genarating:false,
       success: false,
       errored: false,
       cmnt: "",
@@ -114,6 +115,7 @@ export default {
   },
   methods: {
     gensp() {
+      this.genarating=true
       this.$axios
         .$post("/storypointgen", {
           bug: this.bug[0],
@@ -122,7 +124,9 @@ export default {
           this.$fetch();
         })
         .catch((error) => {})
-        .finally(() => {});
+        .finally(() => {
+          this.genarating=false
+        });
     },
     comment() {
       this.loading = true;
