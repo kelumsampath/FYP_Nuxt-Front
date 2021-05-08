@@ -1,7 +1,9 @@
 export default {
   colors: {
     default: '#344675',
-    primary: '#42b883',
+    primary: '#FDF50E',
+    primary2: '#250EFD',
+    primary3: '#42b883',
     info: '#1d8cf8',
     danger: '#fd5d93',
     orange: '#ff8a76',

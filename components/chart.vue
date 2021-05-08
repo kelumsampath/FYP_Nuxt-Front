@@ -2,12 +2,11 @@
   <div class="row">
   
     <!-- Small charts -->
-    <div class="col-lg-4" >
+    <div  >
       <card type="chart">
         <template slot="header">
-          <h5 class="card-category">Total Shipments</h5>
+          <h5 class="card-category">Actual VS Text Score VS Predicted</h5>
           <h3 class="card-title">
-            <i class="tim-icons icon-bell-55 text-primary "></i> 763,215
           </h3>
         </template>
         <div class="chart-area">
@@ -35,13 +34,31 @@ export default {
   components: {
     LineChart,
   },
+  props: {
+    lables: {
+      type: Array,
+      description: 'Card title'
+    },
+    actual: {
+      type: Array,
+      description: 'Card subtitle'
+    },
+    textScore: {
+      type: Array,
+      description: 'Card subtitle'
+    },
+    predictedSp: {
+      type: Array,
+      description: 'Card subtitle'
+    },
+  },
   data () {
     return {
      
       purpleLineChart: {
         extraOptions: chartConfigs.purpleChartOptions,
         chartData: {
-          labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+          labels:this.$props.lables,
           datasets: [
             {
               label: 'Data',
@@ -57,22 +74,37 @@ export default {
               pointHoverRadius: 4,
               pointHoverBorderWidth: 15,
               pointRadius: 4,
-              data: [80, 100, 70, 80, 120, 80]
+              data: this.$props.actual
             },{
               label: 'Data',
               fill: true,
-              borderColor: config.colors.primary,
+              borderColor: config.colors.primary2,
               borderWidth: 2,
               borderDash: [],
               borderDashOffset: 0.0,
-              pointBackgroundColor: config.colors.primary,
+              pointBackgroundColor: config.colors.primary2,
               pointBorderColor: 'rgba(255,255,255,0)',
-              pointHoverBackgroundColor: config.colors.primary,
+              pointHoverBackgroundColor: config.colors.primary2,
               pointBorderWidth: 20,
               pointHoverRadius: 4,
               pointHoverBorderWidth: 15,
               pointRadius: 4,
-              data: [23, 2, 33, 380, 120, 80]
+              data: this.$props.textScore
+            },{
+              label: 'Data',
+              fill: true,
+              borderColor: config.colors.primary3,
+              borderWidth: 2,
+              borderDash: [],
+              borderDashOffset: 0.0,
+              pointBackgroundColor: config.colors.primary3,
+              pointBorderColor: 'rgba(255,255,255,0)',
+              pointHoverBackgroundColor: config.colors.primary3,
+              pointBorderWidth: 20,
+              pointHoverRadius: 4,
+              pointHoverBorderWidth: 15,
+              pointRadius: 4,
+              data: this.$props.predictedSp
             }
           ]
         },
