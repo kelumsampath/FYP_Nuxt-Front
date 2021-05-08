@@ -53,7 +53,7 @@
       </div>
 
     <div>
-        
+        <chart></chart>
     </div>
     
     </div>
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import chart from '@/components/chart';
 export default {
   data() {
     return {
@@ -82,6 +83,7 @@ export default {
   },
 
   methods: {
+   
     submitFile() {
       let formData = new FormData();
       formData.append("file", this.file);
