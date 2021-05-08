@@ -24,6 +24,9 @@
             style="margin-left: 10%"
           >
             {{ cmnt }}
+            <v-icon light v-on:click="deleteComment(cmnt)">
+              mdi-delete
+            </v-icon>
           </h4>
           <form v-on:submit.prevent="comment" class="grid grid-cols-1 gap-y-6">
             <div v-if="errored" class="rounded bg-red-200 text-lg p-4">
@@ -140,6 +143,19 @@ export default {
         .finally(() => {
           this.loading = false;
         });
+    },
+    deleteComment(cmnt) {
+      this.$axios
+        .$post("/deletecomment", {
+          bugId:this.bug[0].Id,
+          comment: cmnt,
+        })
+        .then((response) => {
+
+          this.$fetch();
+        })
+        .catch((error) => {})
+        .finally(() => {});
     },
   },
 };
