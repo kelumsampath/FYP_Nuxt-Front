@@ -15,7 +15,7 @@
     <v-container>
       <v-row no-gutters>
         <v-col cols="12" sm="6" md="8" style="text-align: justify">
-          <h3>{{ bug[0].Description }}</h3>
+          <p style="overflow: hidden;">{{ bug[0].Description }}</p>
           <br />
           <h3>Comments Story Point:</h3>
           <h4
@@ -70,9 +70,9 @@
         </v-col>
         <v-col cols="6" md="4" style="padding-left: 3%">
           <h3>Developers:</h3>
-          <h4 v-for="dev in bug[0].Name" :key="dev" style="margin-left: 10%">
+          <p v-for="dev in bug[0].Name" :key="dev" style="margin-left: 10%">
             {{ dev }}
-          </h4>
+          </p>
           <br /><br />
           <h3>Story point :{{ bug[0].StroyPoint }}</h3>
           <h3>Predicted Story Point: {{ bug[0].PredictedStoryPoint }}</h3>
