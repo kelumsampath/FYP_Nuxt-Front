@@ -52,7 +52,7 @@
         </v-container>
       </div>
 
-    <div style="margin-top:5%;">
+    <div v-if="load" style="margin-top:5%;">
         <chart :lables="label" :actual="actual" :textScore="textScore" :predictedSp="predictedSp"></chart>
     </div>
     
@@ -67,12 +67,13 @@ export default {
     return {
       file: "",
       Training:false,
+      load:false,
       AccuracyMeassures1: {},
       AccuracyMeassures2: {},
-      label:['JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-      actual:[23, 2, 33, 380, 120, 80],
-      textScore:[2, 2, 33, 3, 120, 2],
-      predictedSp:[23, 2, 32, 21, 2, 30],
+      label:[],
+      actual:[],
+      textScore:[],
+      predictedSp:[],
     };
   },
   
@@ -82,6 +83,19 @@ export default {
       .then((response) => {
         this.AccuracyMeassures1 = response.AccuracyMeassures1;
         this.AccuracyMeassures2 = response.AccuracyMeassures2;
+      })
+      .catch((error) => {})
+      .finally(() => {});
+
+      this.$axios
+      .$get("/stats")
+      .then((response) => {
+        this.label = response.id;
+        this.actual = response.actual;
+        this.textScore = response.textscore;
+        this.predictedSp = response.predicted;
+        this.load=true
+        console.log(this.label)
       })
       .catch((error) => {})
       .finally(() => {});
