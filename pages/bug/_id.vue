@@ -42,6 +42,7 @@
                         id="cmnt"
                         rows="4"
                         class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
+                        style="width:100%;margin-left: 10%; background-color:white;"
                         placeholder="Post a comment*"
                       ></textarea>
                     </div>
@@ -52,6 +53,7 @@
                     <span class="inline-flex rounded-md shadow-sm">
                       <button
                         type="submit"
+                        style="background: #a7bbc7; margin-left: 5%; border-radius: 8px"
                         class="inline-flex justify-center py-3 px-6 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
                       >
                         {{ loading ? "Posting..." : "Post" }}
@@ -73,7 +75,7 @@
           <h3>Predicted Story Point: {{ bug[0].PredictedStoryPoint }}</h3>
           <button
             v-on:click="gensp()"
-            style="background: green; padding: 1%; border-radius: 8px"
+            style="background: #a7bbc7; padding: 3%; border-radius: 8px"
           >
             Genarate Story Point
           </button>
