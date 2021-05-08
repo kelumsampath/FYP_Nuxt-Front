@@ -10,7 +10,7 @@
     "
   >
     <p>Bug Id: {{ bug[0].Id }}</p>
-    <h1>{{ bug[0].Summary }}</h1>
+    <h1 style="overflow: hidden;">{{ bug[0].Summary }}</h1>
     <br />
     <v-container>
       <v-row no-gutters>
