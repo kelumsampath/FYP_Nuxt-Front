@@ -55,7 +55,10 @@
     <div v-if="load" style="margin-top:5%;">
         <chart :lables="label" :actual="actual" :textScore="textScore" :predictedSp="predictedSp"></chart>
     </div>
-    
+    <br/>
+    <p ><v-icon style="color:#FDF50E">mdi-checkbox-blank-circle</v-icon>Actual Storypoint</p>
+    <p><v-icon  style="color:#250EFD">mdi-checkbox-blank-circle</v-icon>Estimated Text-Score</p>
+    <p ><v-icon style="color:#42b883">mdi-checkbox-blank-circle</v-icon>Estimated Storypoint</p>
     </div>
   </v-row>
 </template>
