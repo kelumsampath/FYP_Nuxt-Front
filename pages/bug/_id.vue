@@ -82,6 +82,22 @@
           >
             {{ genarating ? "Genarating..." : "Genarate" }}
           </button>
+          <br><br/>
+           <label for="selectedDevs" class="sr-only">Assign to:</label>
+        <v-container fluid style="margin-left:10%">
+          <!-- <p>{{ selected }}</p> -->
+          <v-checkbox
+            v-for="dev in developers"
+            :key="dev[0]"
+            @click="
+              () => {
+                selectDevs(dev[0]);
+              }
+            "
+            :label="dev[1]"
+            :value="dev[0]"
+          ></v-checkbox>
+        </v-container>
           
         </v-col>
         <button
@@ -99,6 +115,8 @@
 </template>
 
 <script>
+import VueLodash from 'vue-lodash'
+import lodash from 'lodash'
 export default {
   data() {
     return {
@@ -111,6 +129,7 @@ export default {
       success: false,
       errored: false,
       cmnt: "",
+      selectedDevsList:[]
     };
   },
   async fetch() {
@@ -122,7 +141,21 @@ export default {
       })
       .catch((error) => {})
       .finally(() => {});
+
+      this.$axios
+      .$get("/developers")
+      .then((response) => {
+        console.log(response);
+        response.forEach(dev => {
+          if(!this.bug[0].Name.includes(dev[1])){
+            this.developers.push(dev)
+          }
+        });
+      })
+      .catch((error) => {})
+      .finally(() => {});
   },
+
   methods: {
     gensp() {
       this.genarating=true
@@ -182,6 +215,13 @@ export default {
         .catch((error) => {})
         .finally(() => {});
     },
+      selectDevs(id){
+          if(this.selectedDevsList.includes(id)){
+              this.selectedDevsList=_.without(this.selectedDevs,id)
+          }else{
+              this.selectedDevsList.push(id)
+          }
+      }
   },
 };
 </script>
