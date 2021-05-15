@@ -9,7 +9,16 @@
       background-color: #845460;
     "
   >
-    <p>Bug Id: {{ bug[0].Id }}</p>
+    <p>Bug Id: {{ bug[0].Id }}
+      <button
+            v-on:click="deletebug()"
+            style="background: red; border-radius: 8px;padding:1%;margin-left:90%"
+          >
+            <v-icon light v-on:click="deleteComment(cmnt)" style="color:white;">
+              mdi-delete
+            </v-icon>
+          </button>
+    </p>
     <h1 style="overflow: hidden;">{{ bug[0].Summary }}</h1>
     <br />
     <v-container>
@@ -100,14 +109,7 @@
         </v-container>
           
         </v-col>
-        <button
-            v-on:click="deletebug()"
-            style="background: red; border-radius: 8px;padding:1%;margin-left:90%"
-          >
-            <v-icon light v-on:click="deleteComment(cmnt)" style="color:white;">
-              mdi-delete
-            </v-icon>
-          </button>
+        
       </v-row>
       
     </v-container>
