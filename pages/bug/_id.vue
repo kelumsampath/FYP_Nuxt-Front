@@ -14,7 +14,7 @@
             v-on:click="deletebug()"
             style="background: red; border-radius: 8px;padding:1%;margin-left:90%"
           >
-            <v-icon light v-on:click="deleteComment(cmnt)" style="color:white;">
+            <v-icon light style="color:white;">
               mdi-delete
             </v-icon>
           </button>
