@@ -81,6 +81,9 @@
           <h3>Developers:</h3>
           <p v-for="dev in bug[0].Name" :key="dev" style="margin-left: 10%">
             {{ dev }}
+            <v-icon light v-on:click="removeDev(dev)">
+              mdi-delete
+            </v-icon>
           </p>
           <br /><br />
           <h3>Story point :{{ bug[0].StroyPoint }}</h3>
@@ -245,7 +248,19 @@ export default {
         .finally(() => {
           this.Adding=false
         });
-      }
+      },
+      removeDev(dev){
+       this.$axios
+        .$post("/removedev", {
+          bugId:this.bug[0].Id,
+          devName:dev
+        })
+        .then((response) => {
+          this.$fetch();
+        })
+        .catch((error) => {})
+        .finally(() => {});
+  }
   },
 };
 </script>
