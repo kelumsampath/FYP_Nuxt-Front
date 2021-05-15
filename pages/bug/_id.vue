@@ -34,7 +34,7 @@
           >
             {{ cmnt }}
             <v-icon light v-on:click="deleteComment(cmnt)">
-              mdi-delete
+              mdi-comment-remove-outline
             </v-icon>
           </h4>
           <form v-on:submit.prevent="comment" class="grid grid-cols-1 gap-y-6">
@@ -82,7 +82,7 @@
           <p v-for="dev in bug[0].Name" :key="dev" style="margin-left: 10%">
             {{ dev }}
             <v-icon light v-on:click="removeDev(dev)">
-              mdi-delete
+               mdi-minus-box
             </v-icon>
           </p>
           <br /><br />
