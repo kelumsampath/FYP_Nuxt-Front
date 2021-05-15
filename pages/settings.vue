@@ -27,7 +27,7 @@
               v-on:click="submitFile()"
               style="background: green; padding: 1%; border-radius: 8px"
             >
-              Train
+              {{ Training ? "Training..." : "Train" }}
             </button>
           </div>
         </div>
@@ -52,21 +52,31 @@
         </v-container>
       </div>
 
-    <div>
-        
+    <div v-if="load" style="margin-top:5%;">
+        <chart :lables="label" :actual="actual" :textScore="textScore" :predictedSp="predictedSp"></chart>
     </div>
-    
+    <br/>
+    <p ><v-icon style="color:#FDF50E">mdi-checkbox-blank-circle</v-icon>Actual Storypoint</p>
+    <p><v-icon  style="color:#250EFD">mdi-checkbox-blank-circle</v-icon>Estimated Text-Score</p>
+    <p ><v-icon style="color:#42b883">mdi-checkbox-blank-circle</v-icon>Estimated Storypoint</p>
     </div>
   </v-row>
 </template>
 
 <script>
+import chart from '@/components/chart';
 export default {
   data() {
     return {
       file: "",
+      Training:false,
+      load:false,
       AccuracyMeassures1: {},
       AccuracyMeassures2: {},
+      label:[],
+      actual:[],
+      textScore:[],
+      predictedSp:[],
     };
   },
   
@@ -79,10 +89,25 @@ export default {
       })
       .catch((error) => {})
       .finally(() => {});
+
+      this.$axios
+      .$get("/stats")
+      .then((response) => {
+        this.label = response.id;
+        this.actual = response.actual;
+        this.textScore = response.textscore;
+        this.predictedSp = response.predicted;
+        this.load=true
+        console.log(this.label)
+      })
+      .catch((error) => {})
+      .finally(() => {});
   },
 
   methods: {
+   
     submitFile() {
+      this.Training=true
       let formData = new FormData();
       formData.append("file", this.file);
       this.$axios
@@ -99,7 +124,8 @@ export default {
         })
         .catch(function () {
           console.log("FAILURE!!");
-        });
+        })
+        .finally(() => {this.Training=false});
     },
 
     handleFileUpload() {

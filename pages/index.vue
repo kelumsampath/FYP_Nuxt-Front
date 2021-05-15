@@ -9,13 +9,7 @@
         background-color: #845460;
       ">
    <v-data-table dense :headers="headers" :items="bugs" class="elevation-1" @click:row="openBug">
-      <tbody>
-        <tr v-for="(item,index) in bugs" :key="index" >
-          <td>{{item.Id}}</td>
-          <td>{{item.Summary}}</td>
-          <td>{{item.Summary}}</td>
-        </tr>
-      </tbody>
+      
     </v-data-table>
     </div>
   </v-row>
@@ -32,7 +26,8 @@ export default {
       headers : [
     { text: "id", value: "Id" },
     { text: "Summary", value: "Summary" },
-    { text: "StroyPoint", value: "StroyPoint" }
+    { text: "StroyPoint", value: "StroyPoint" },
+    { text: "Predicted SP", value: "PredictedStoryPoint" }
   ],
     };
   },
