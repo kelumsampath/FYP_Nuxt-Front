@@ -24,6 +24,8 @@
         <div v-if="errored" class="rounded bg-red-200 text-lg p-4">
           Something went wrong!
         </div>
+        <v-row>
+        <v-col>
         <div>
           <label for="summar_txt" class="sr-only">Summary*</label>
           <div class="relative rounded-md shadow-sm">
@@ -34,7 +36,7 @@
               id="summar_txt"
               class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
               placeholder="Summary*"
-              style="width: 40%; margin-left: 10%; background-color: white"
+              style="width: 100%; background-color: white"
             />
           </div>
         </div><br/>
@@ -50,15 +52,14 @@
                 rows="4"
                 class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
                 placeholder="Description*"
-                style="width: 40%; margin-left: 10%; background-color: white"
+                style="width: 100%; background-color: white"
               ></textarea>
             </div>
           </div>
         </div><br/>
 
-    <label for="selectedDevs" class="sr-only">Assign to:</label>
+    <!-- <label for="selectedDevs" class="sr-only">Assign to:</label>
         <v-container fluid style="margin-left:10%">
-          <!-- <p>{{ selected }}</p> -->
           <v-checkbox
             v-for="dev in developers"
             :key="dev[0]"
@@ -70,7 +71,7 @@
             :label="dev[1]"
             :value="dev[0]"
           ></v-checkbox>
-        </v-container>
+        </v-container> -->
 
         <div class="">
           <span
@@ -103,6 +104,26 @@
             </button>
           </span>
         </div>
+        </v-col>
+        <v-col>
+        <label for="selectedDevs" class="sr-only">Assign to:</label>
+        <v-container fluid style="margin-left:10%">
+          <!-- <p>{{ selected }}</p> -->
+          <v-checkbox
+            v-for="dev in developers"
+            :key="dev[0]"
+            @click="
+              () => {
+                selectDevs(dev[0]);
+              }
+            "
+            :label="dev[1]"
+            :value="dev[0]"
+          ></v-checkbox>
+        </v-container>
+        
+        </v-col>
+        </v-row>
       </form>
     </div>
   </div>
