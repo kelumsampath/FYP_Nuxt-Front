@@ -92,7 +92,7 @@
             {{ genarating ? "Genarating..." : "Genarate" }}
           </button>
           <br><br/>
-           <label for="selectedDevs" class="sr-only">Assign to:</label>
+           <label for="selectedDevs" class="sr-only">Additional Developers:</label>
         <v-container fluid style="margin-left:10%">
           <!-- <p>{{ selected }}</p> -->
           <v-checkbox
@@ -107,7 +107,12 @@
             :value="dev[0]"
           ></v-checkbox>
         </v-container>
-          
+          <button
+            v-on:click="addDevs()"
+            style="background: #a7bbc7; padding: 3%; border-radius: 8px"
+          >
+            {{ Adding ? "Adding..." : "Add Devs" }}
+          </button>
         </v-col>
         
       </v-row>
@@ -128,6 +133,7 @@ export default {
       developers: [],
       loading: false,
       genarating:false,
+      Adding:false,
       success: false,
       errored: false,
       cmnt: "",
@@ -148,6 +154,7 @@ export default {
       .$get("/developers")
       .then((response) => {
         console.log(response);
+        this.developers=[]
         response.forEach(dev => {
           if(!this.bug[0].Name.includes(dev[1])){
             this.developers.push(dev)
@@ -223,6 +230,21 @@ export default {
           }else{
               this.selectedDevsList.push(id)
           }
+      },
+      addDevs(){
+      this.Adding=true
+      this.$axios
+        .$post("/addBugDevs", {
+          bugId: this.bug[0].Id,
+          devIds:this.selectedDevsList
+        })
+        .then((response) => {
+          this.$fetch();
+        })
+        .catch((error) => {})
+        .finally(() => {
+          this.Adding=false
+        });
       }
   },
 };
