@@ -27,7 +27,7 @@
         <v-row>
         <v-col>
         <div>
-          <label for="summar_txt" class="sr-only">Summary*</label>
+          <label for="summar_txt" class="sr-only">Summary</label>
           <div class="relative rounded-md shadow-sm">
             <input
               v-model="summary"
@@ -55,6 +55,20 @@
                 style="width: 100%; background-color: white"
               ></textarea>
             </div>
+          </div>
+        </div><br/>
+
+        <div>
+          <label for="stroypoint" class="sr-only">Stroy Point</label>
+          <div class="relative rounded-md shadow-sm">
+            <input
+              v-model="stroypoint"
+              name="stroypoint"
+              id="stroypoint"
+              class="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
+              placeholder="stroypoint*"
+              style="width: 100%; background-color: white"
+            />
           </div>
         </div><br/>
 
@@ -138,6 +152,7 @@ export default {
       success: false,
       errored: false,
       summary: "",
+      stroypoint:null,
       developers: [],
       description: "",
       selectedDevs:[],
@@ -161,6 +176,7 @@ export default {
           summary: this.summary,
           developers: this.selectedDevs,
           description: this.description,
+          stroypoint:this.stroypoint,
         })
         .then((response) => {
           this.success = true;
