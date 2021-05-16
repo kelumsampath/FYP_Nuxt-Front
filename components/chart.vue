@@ -9,9 +9,9 @@
           <h3 class="card-title">
           </h3>
         </template>
-        <div class="chart-area">
+        <div class="chart-area" >
           <line-chart
-            style="height: 100%"
+            style="width: 850px; height:900px"
             :chart-data="purpleLineChart.chartData"
             :gradient-colors="purpleLineChart.gradientColors"
             :gradient-stops="purpleLineChart.gradientStops"
